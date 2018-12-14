@@ -1,0 +1,9 @@
+.form{
+  border: 1px black solid;
+  padding: 15px;
+  display: inline-block;
+  width: 600px;
+}
+.btn{
+  margin: 5px;
+}

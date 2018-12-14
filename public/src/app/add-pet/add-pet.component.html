@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h4>Know of a pet needing a home?</h4>
+      <div class="form">
+        <form (submit)="create()">
+          <p>Pet Name:</p>
+          <input
+          class="form-control"
+          type="text"
+          name="name"
+          required
+            minlength="3"
+            [(ngModel)]="newPet.name"
+            #name="ngModel"
+            />
+            <div *ngIf="name.errors">
+              <span style="color: red" *ngIf="name.errors['required']"
+              >Please enter the pets name</span
+              >
+              <span style="color: red" *ngIf="name.errors['minlength']"
+              >The pets name must be at least three characters!</span
+            >
+          </div>
+          <div *ngIf="errors">
+            <div *ngIf="errors['errors'].name.properties.type == 'unique'" style="color: red">This pet already exists in the shelter! Please change the name</div>
+          </div>
+          <br />
+          <p>Pet type:</p>
+          <input
+            class="form-control"
+            type="text"
+            name="type"
+            required
+            minlength="3"
+            [(ngModel)]="newPet.type"
+            #type="ngModel"
+          />
+          <div *ngIf="type.errors">
+            <span style="color: red" *ngIf="type.errors['required']"
+              >Please enter the pets type</span
+            >
+            <span style="color: red" *ngIf="type.errors['minlength']"
+              >The pets type must be at least three characters!</span
+            >
+          </div>
+          <br />
+          <p>Description</p>
+          <input
+          class="form-control"
+            type="text"
+            name="description"
+            required
+            minlength="3"
+            [(ngModel)]="newPet.description"
+            #description="ngModel"
+          />
+          <div *ngIf="description.errors">
+            <span style="color: red" *ngIf="description.errors['required']"
+              >Please enter a description</span
+            >
+            <span style="color: red" *ngIf="description.errors['minlength']"
+              >The pets description must be at least three characters!</span
+            >
+          </div>
+          <br />
+          <p>Skills:</p>
+          <div>
+            <p>Skill 1:</p>
+            <input
+            class="form-control"
+              type="text"
+              name="skillOne"
+              [(ngModel)]="newPet.skillOne"
+              #skillOne="ngModel"
+            />
+            <br />
+            <p>Skill 2:</p>
+            <input
+            class="form-control"
+              type="text"
+              name="skillTwo"
+              [(ngModel)]="newPet.skillTwo"
+              #skillTwo="ngModel"
+            />
+            <br />
+            <p>Skill 3:</p>
+            <input
+            class="form-control"
+              type="text"
+              name="skillThree"
+              [(ngModel)]="newPet.skillThree"
+              #skillThree="ngModel"
+            />
+            <br />
+          </div>
+          <input class="btn btn-primary" type="submit" value="Add pet" />
+          <button class="btn btn-primary" [routerLink]="['/pets']">
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
